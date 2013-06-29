@@ -1,14 +1,10 @@
 # coding:cp932
 
-import os
-os.linesep = '\r\n'
-
 # 月・部署ごとの金額を集計する
 kin = {}
 f = open('kingaku.txt')
 for line in f:
   d = line[:-1].split("\t")
-  print d
   # 月にあたる部分を取り出す
   k = d[0][:7]
   # これに部署コードもくっつけて，キーにする
@@ -21,10 +17,18 @@ for line in f:
     kin[k] += int(d[2])
 
 # レポート表示
-print kin
+#ks = kin.keys()
+#ks.sort()
+#for k in ks:
+#  k2 = k.split(" ")
+#  print "%s の部署%sの購入額: %d" % (k2[0], k2[1], kin[k])
+
+# レポート出力・タブ区切り
+outfile = open("report.txt", "w")
 ks = kin.keys()
 ks.sort()
 for k in ks:
   k2 = k.split(" ")
-  print "%s の部署%sの購入額: %d" % (k2[0], k2[1], kin[k])
+  print >>outfile, "%s\t%s\t%s" % (k2[0], k2[1], kin[k])
+outfile.close()
 

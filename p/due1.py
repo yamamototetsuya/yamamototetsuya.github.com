@@ -1,0 +1,25 @@
+# coding: cp932
+
+import datetime
+
+# •Ô‹pŠúŒÀ‚ÌŠÖ”‚ğì¬’†i—F‚Ì‰ï‚Æ‰Ä‹x‚İƒLƒƒƒ“ƒy[ƒ“‚ğl—¶j
+def calc_due_date(out_date, tomo):
+  # —F‚Ì‰ï
+  if tomo == 1:
+    period = 28
+  else:
+    # ‰Ä‹x‚İ
+    if out_date.month == 8:
+      period = 28
+    else:
+      period = 14
+  d = out_date + datetime.timedelta(period)
+  return d
+
+# ÀÛ‚Ég‚Á‚Ä‚İ‚é
+a = datetime.date(2012, 4, 1)
+print calc_due_date(a, 0)
+print calc_due_date(a, 1)
+a = datetime.date(2012, 8, 1)
+print calc_due_date(a, 0)
+print calc_due_date(a, 1)
